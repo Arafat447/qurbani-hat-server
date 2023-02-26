@@ -116,16 +116,16 @@ const cors = require("cors")
 const bodyPerser = require("body-parser");
 const { MongoClient,ObjectId } = require('mongodb');
 const app = express();
-const port = 3000;
+const port = 50000;
 require("dotenv").config();
 app.use(cors());
 app.use(bodyPerser.json());
 // db connection 
 
-const uri = "mongodb+srv://morshedzaimahtech:FbU2ZrZx3w03CbiC@cluster0.4p9fior.mongodb.net/tdabDB?retryWrites=true&w=majority";
+const uri = "mongodb+srv://arafat:nNTjSlVkMTRtg3km@cluster0.njisbsh.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-  const cowCollection = client.db("tdabDB").collection("board-of-directors");
+  const cowCollection = client.db("tadab").collection("name");
   const serviceCollection = client.db("tdabDB").collection("services");
   // Post
   app.post("/addCow",(req,res)=>{
@@ -145,11 +145,11 @@ client.connect(err => {
       console.log(service)
   });
   // Get
-  app.get("/board-of-directors",(req,res)=>{
-    cowCollection.find({})
+  app.get("/test",(req,res)=>{
+      cowCollection.find({})
       .toArray((err,data)=>{
           res.send(data)
-      })    
+      }) 
   });
   // cow get by id
   app.get("/allCow/:id",(req,res)=>{
